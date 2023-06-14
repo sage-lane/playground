@@ -1,43 +1,33 @@
 import employees from "./employeeDb.json";
 import salary from "./salaryDb.json";
 
-const employeeFn = () => {
+const mayFail = () => {
   const prob = Math.random();
-  if (prob > 0.75) {
+  if (prob > 0.5) {
     throw Error("Could not process request");
   }
-  return employees;
 };
 
-const salaryFn = () => {
-  const prob = Math.random();
-  if (prob > 0.9) {
-    throw Error("Could not process request");
-  }
-  return salary;
-};
-
-const employeeDb = new Promise((resolve, reject) => {
+const employeeDb = new Promise((resolve, _) => {
   setTimeout(() => {
-    try {
-      resolve(employeeFn());
-    } catch {
-      reject();
-    }
+    resolve(employees);
   }, 500);
 });
 
-const salaryDb = new Promise((resolve, reject) => {
+const salaryDb = new Promise((resolve, _) => {
   setTimeout(() => {
-    try {
-      resolve(salaryFn());
-    } catch {
-      reject();
-    }
+    resolve(salary);
   }, 500);
 });
 
-const getEmployees = async () => employeeDb;
-const getSalaries = async () => salaryDb;
+const getEmployees = async () => {
+  mayFail();
+  return employeeDb;
+};
+
+const getSalaries = async () => {
+  mayFail();
+  return salaryDb;
+};
 
 export { getEmployees, getSalaries };

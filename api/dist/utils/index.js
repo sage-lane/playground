@@ -15,41 +15,29 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getSalaries = exports.getEmployees = void 0;
 const employeeDb_json_1 = __importDefault(require("./employeeDb.json"));
 const salaryDb_json_1 = __importDefault(require("./salaryDb.json"));
-const employeeFn = () => {
+const mayFail = () => {
     const prob = Math.random();
-    if (prob > 0.75) {
+    if (prob > 0.5) {
         throw Error("Could not process request");
     }
-    return employeeDb_json_1.default;
 };
-const salaryFn = () => {
-    const prob = Math.random();
-    if (prob > 0.9) {
-        throw Error("Could not process request");
-    }
-    return salaryDb_json_1.default;
-};
-const employeeDb = new Promise((resolve, reject) => {
+const employeeDb = new Promise((resolve, _) => {
     setTimeout(() => {
-        try {
-            resolve(employeeFn());
-        }
-        catch (_a) {
-            reject();
-        }
+        resolve(employeeDb_json_1.default);
     }, 500);
 });
-const salaryDb = new Promise((resolve, reject) => {
+const salaryDb = new Promise((resolve, _) => {
     setTimeout(() => {
-        try {
-            resolve(salaryFn());
-        }
-        catch (_a) {
-            reject();
-        }
+        resolve(salaryDb_json_1.default);
     }, 500);
 });
-const getEmployees = () => __awaiter(void 0, void 0, void 0, function* () { return employeeDb; });
+const getEmployees = () => __awaiter(void 0, void 0, void 0, function* () {
+    mayFail();
+    return employeeDb;
+});
 exports.getEmployees = getEmployees;
-const getSalaries = () => __awaiter(void 0, void 0, void 0, function* () { return salaryDb; });
+const getSalaries = () => __awaiter(void 0, void 0, void 0, function* () {
+    mayFail();
+    return salaryDb;
+});
 exports.getSalaries = getSalaries;

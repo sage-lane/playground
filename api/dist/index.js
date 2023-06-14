@@ -14,6 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 // Adapted from https://blog.logrocket.com/how-to-set-up-node-typescript-express/
 const express_1 = __importDefault(require("express"));
+const utils_1 = require("./utils");
 // Goal: Create an api for HR to use to manage company employees.
 const app = (0, express_1.default)();
 const port = 5000;
@@ -25,7 +26,17 @@ const port = 5000;
 //   3) Merges this data into a single array and returns it in the form {id, fullName, salary }
 //   4) For portability, dynamically generate and console.log() an SQL string using the IDs submitted in the post request
 //      that will select all ids with a salary greater than 75k and cast the salary to the appropriate numeric value as a new column.
-app.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () { }));
+app.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const employees = (0, utils_1.getEmployees)();
+        const salaries = (0, utils_1.getSalaries)();
+        console.log(employees);
+    }
+    catch (_a) {
+        console.log("Error");
+    }
+    res.send();
+}));
 app.listen(port, () => {
     console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
 });
