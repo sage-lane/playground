@@ -7,13 +7,6 @@ import { getEmployees, getSalaries } from "./utils";
 const app: Express = express();
 const port = 5000;
 
-type EmployeeId = number;
-
-type SalariedEmployee = {
-  fullName: string;
-  salary: number;
-};
-
 // Task -
 // Salary data is stored separately from employee data (employeeDb & salaryDb).
 // As efficiently as you can, create an endpoint which fulfills the following requirements:
@@ -22,16 +15,7 @@ type SalariedEmployee = {
 //   3) Merges this data into a single array and returns it in the form {id, fullName, salary }
 //   4) For portability, dynamically generate and console.log() an SQL string using the IDs submitted in the post request
 //      that will select all ids with a salary greater than 75k and cast the salary to the appropriate numeric value as a new column.
-app.get("/", async (req: Request<{}, {}, Array<EmployeeId>>, res: Response) => {
-  try {
-    const employees = getEmployees();
-    const salaries = getSalaries();
-    console.log(employees);
-  } catch {
-    console.log("Error");
-  }
-  res.send();
-});
+app.get("/", async (req: Request<{}, {}, Array<number>>, res: Response) => {});
 
 app.listen(port, () => {
   console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
