@@ -34,8 +34,13 @@ const jsonParser = body_parser_1.default.json();
 app.get("/", jsonParser, (req, res) => __awaiter(void 0, void 0, void 0, function* () { }));
 // This is for another exercise
 app.get("/departments", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const departments = yield (0, utils_1.getDepartments)();
-    res.send(departments);
+    try {
+        const departments = yield (0, utils_1.getDepartments)();
+        res.send(departments);
+    }
+    catch (_a) {
+        res.sendStatus(500);
+    }
 }));
 app.listen(port, () => {
     console.log(`⚡️[server]: Server is running at http://localhost:${port}`);

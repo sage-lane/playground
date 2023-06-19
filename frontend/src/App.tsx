@@ -6,14 +6,25 @@ import "./App.css";
 // Create a form which captures the following data:
 // 1) First Name (String) Last Name (String)
 // 2) Salary (Integer)
-// 3) Executive Hire (True / False)
-// 4) Department (List of options)
+// 3) Email (String)
+// 4) Executive Hire (True / False)
+// 5) Department (List of options)
+//    - localhost:5000/departments
 
 // CSS Task -
 // 5) Style Form - CSS Freeform challenge
 // 6) Align form - Any CSS Algo, Flexbox etc.
 
 function App() {
+  React.useEffect(() => {
+    async function fetchData() {
+      const data = await fetch("http://127.0.0.1:5000/departments");
+      const json = await data.json();
+      console.log(json);
+    }
+    fetchData();
+  });
+
   return (
     <div className="App">
       <header className="App-header">
@@ -21,14 +32,6 @@ function App() {
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
       </header>
     </div>
   );

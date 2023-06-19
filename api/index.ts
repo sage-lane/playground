@@ -29,8 +29,12 @@ app.get(
 
 // This is for another exercise
 app.get("/departments", async (req: Request, res: Response) => {
-  const departments = await getDepartments();
-  res.send(departments);
+  try {
+    const departments = await getDepartments();
+    res.send(departments);
+  } catch {
+    res.sendStatus(500);
+  }
 });
 
 app.listen(port, () => {
