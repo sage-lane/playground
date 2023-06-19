@@ -15,10 +15,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 // Adapted from https://blog.logrocket.com/how-to-set-up-node-typescript-express/
 const express_1 = __importDefault(require("express"));
 const body_parser_1 = __importDefault(require("body-parser"));
+const utils_1 = require("./utils");
+const cors_1 = __importDefault(require("cors"));
 // Goal: Create an api for HR to use to manage company employees.
+// Express Server Config
 const app = (0, express_1.default)();
-const jsonParser = body_parser_1.default.json();
+app.use((0, cors_1.default)());
 const port = 5000;
+const jsonParser = body_parser_1.default.json();
 // Task -
 // Salary data is stored separately from employee data (employeeDb & salaryDb).
 // As efficiently as you can, create an endpoint which fulfills the following requirements:
@@ -28,6 +32,11 @@ const port = 5000;
 //   4) For portability, dynamically generate and console.log() an SQL string using the IDs submitted in the post request
 //      that will select all ids with a salary greater than 75k and cast the salary to the appropriate numeric value as a new column.
 app.get("/", jsonParser, (req, res) => __awaiter(void 0, void 0, void 0, function* () { }));
+// This is for another exercise
+app.get("/departments", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const departments = yield (0, utils_1.getDepartments)();
+    res.send(departments);
+}));
 app.listen(port, () => {
     console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
 });

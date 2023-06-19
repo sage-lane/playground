@@ -20,6 +20,20 @@ const salaryDb = new Promise((resolve, _) => {
   }, 500);
 });
 
+const departmentDb = new Promise((resolve, _) => {
+  setTimeout(() => {
+    resolve([
+      "Sales",
+      "Engineering",
+      "Human Resources",
+      "Accounting",
+      "Marketing",
+      "Customer Sucess",
+      "Operations",
+    ]);
+  }, 2000);
+});
+
 const getEmployees = async () => {
   mayFail();
   return employeeDb;
@@ -30,4 +44,9 @@ const getSalaries = async () => {
   return salaryDb;
 };
 
-export { getEmployees, getSalaries };
+const getDepartments = async () => {
+  mayFail();
+  return departmentDb;
+};
+
+export { getEmployees, getSalaries, getDepartments };

@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getSalaries = exports.getEmployees = void 0;
+exports.getDepartments = exports.getSalaries = exports.getEmployees = void 0;
 const employeeDb_json_1 = __importDefault(require("./employeeDb.json"));
 const salaryDb_json_1 = __importDefault(require("./salaryDb.json"));
 const mayFail = () => {
@@ -31,6 +31,19 @@ const salaryDb = new Promise((resolve, _) => {
         resolve(salaryDb_json_1.default);
     }, 500);
 });
+const departmentDb = new Promise((resolve, _) => {
+    setTimeout(() => {
+        resolve([
+            "Sales",
+            "Engineering",
+            "Human Resources",
+            "Accounting",
+            "Marketing",
+            "Customer Sucess",
+            "Operations",
+        ]);
+    }, 2000);
+});
 const getEmployees = () => __awaiter(void 0, void 0, void 0, function* () {
     mayFail();
     return employeeDb;
@@ -41,3 +54,8 @@ const getSalaries = () => __awaiter(void 0, void 0, void 0, function* () {
     return salaryDb;
 });
 exports.getSalaries = getSalaries;
+const getDepartments = () => __awaiter(void 0, void 0, void 0, function* () {
+    mayFail();
+    return departmentDb;
+});
+exports.getDepartments = getDepartments;

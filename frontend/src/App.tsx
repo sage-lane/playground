@@ -1,6 +1,17 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
+
+// React Task -
+// Create a form which captures the following data:
+// 1) First Name (String) Last Name (String)
+// 2) Salary (Integer)
+// 3) Executive Hire (True / False)
+// 4) Department (List of options)
+
+// CSS Task -
+// 5) Style Form - CSS Freeform challenge
+// 6) Align form - Any CSS Algo, Flexbox etc.
 
 function App() {
   return (

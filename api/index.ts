@@ -1,13 +1,17 @@
 // Adapted from https://blog.logrocket.com/how-to-set-up-node-typescript-express/
 import express, { Express, Request, Response } from "express";
 import bodyParser from "body-parser";
-import { getEmployees, getSalaries } from "./utils";
+import { getEmployees, getSalaries, getDepartments } from "./utils";
+import cors from "cors";
 
 // Goal: Create an api for HR to use to manage company employees.
 
+// Express Server Config
 const app: Express = express();
-const jsonParser = bodyParser.json();
+app.use(cors());
+
 const port = 5000;
+const jsonParser = bodyParser.json();
 
 // Task -
 // Salary data is stored separately from employee data (employeeDb & salaryDb).
@@ -22,6 +26,12 @@ app.get(
   jsonParser,
   async (req: Request<{}, {}, Array<number>>, res: Response) => {}
 );
+
+// This is for another exercise
+app.get("/departments", async (req: Request, res: Response) => {
+  const departments = await getDepartments();
+  res.send(departments);
+});
 
 app.listen(port, () => {
   console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
